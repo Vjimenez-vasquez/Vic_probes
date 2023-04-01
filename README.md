@@ -1,7 +1,7 @@
 # Vic_probes
 una colección de códigos para la identificación de regiones génicas únicas en especies a partir de secuencias genómicas
 
-# Vic probes code 1 : Dedemos aegurarnos de que las especies que estamos trabajando presenten monofilia reciproca, esto sera inferido a traves de un analisis filogenómico
+# Vic probes code 1 : Debemos aegurarnos de que las especies que estamos trabajando presenten monofilia reciproca, esto sera inferido a traves de un analisis filogenómico
 ```r
 setwd("/home/hp/Documentos/sondas_lbm/borreliella")
 getwd()
@@ -111,7 +111,7 @@ write.table(e,"borreliella_metadata.tsv", row.names=FALSE, sep="\t")
 write.table(e$accession,"borreliella_genomes.txt", row.names=FALSE, sep="\t",quot=F, col.names = F)
 ```
 
-# Vic probes code 2 : Dedemos adjuntar la informacion de presencia u ausencia de genes a la metadata generada y plotearla en el árbol generado 
+# Vic probes code 2 : Debemos adjuntar la informacion de presencia u ausencia de genes a la metadata generada y plotearla en el árbol generado 
 ```r
 ##########################
 ### FINAL METADATA ##
