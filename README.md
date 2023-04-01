@@ -1,7 +1,7 @@
 # Vic_probes
 una colección de códigos para la identificación de regiones génicas únicas en especies a partir de secuencias genómicas
 
-# Vic probes code
+# Vic probes code 1 : Dedemos aegurarnos de que las especies que estamos trabajando presenten monofilia reciproca, esto sera inferido a traves de un analisis filogenómico
 ```r
 setwd("/home/hp/Documentos/sondas_lbm/borreliella")
 getwd()
@@ -109,8 +109,10 @@ dim(e)
 
 write.table(e,"borreliella_metadata.tsv", row.names=FALSE, sep="\t")
 write.table(e$accession,"borreliella_genomes.txt", row.names=FALSE, sep="\t",quot=F, col.names = F)
+```
 
-
+# Vic probes code 2 : Dedemos adjuntar la informacion de presencia u ausencia de genes a la metadata generada y plotearla en el árbol generado 
+```r
 ##########################
 ### FINAL METADATA ##
 ##########################
@@ -132,7 +134,6 @@ dim(m2)
 
 length(setdiff(tl,m2$accession))
 length(setdiff(m2$accession,tl))
-
 
 dat <- read.csv("gene_presence_absence.csv", header=TRUE)
 dim(dat)
@@ -170,7 +171,10 @@ q4[1:10,1:25]
 ##### write_metadata ######
 dir()
 write.csv(q4,"metadata_presabs.csv", row.names=FALSE)
+```
 
+# Vic probes code 3 : Ahora, necesitamos identificar los genes propios de una especie determinada 
+```r
 ##################
 ##### assay ######
 ##################
@@ -219,7 +223,6 @@ head(q6[1:10,])
 
 write.table(q6, "metadata_selecta.tsv", row.names=F, quot=F, sep="\t")
 
-
 ###############################################################
 ##### seleccionar solos las entradas acordes con el arbol #####
 ###############################################################
@@ -235,8 +238,10 @@ dim(k)
 l <- k[!duplicated(k$sample),]
 dim(l)
 write.table(l,"metadata_borreliella.tsv", row.names=F, sep="\t")
+```
 
-
+# Vic probes code 4 : Ahora, necesitamos extraer las secuencias unicas identificadas en el pangenoma de roary, blastearlas con los genomas anotados y tener multifastas con las secuencias totales por región génica 
+```r
 #############################
 ##### modificar headers (BASH) #####
 #############################
@@ -315,7 +320,10 @@ prefix=$(basename $r1 .txt)
 seqtk subseq input.fasta $r1 > ${prefix}.fasta ; 
 done 
 ls *.fasta ; 
+```
 
+# Vic probes code 5 : Ahora, generaremos plots y summary tables para una mejor identificacion de dichas regiones 
+```r
 ## plots and statistics ## 
 ## boxplot ##
 library(ggplot2)
@@ -438,4 +446,5 @@ p1 <- ggplot(a3, aes(x = mean, y = sd, color=factor(strains),size=mean_alin_leng
   scale_size(range = c(1,20), name="number of strains")
 p1
 ggplotly(p1)
+
 ```
